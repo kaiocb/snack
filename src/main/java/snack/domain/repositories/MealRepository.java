@@ -1,6 +1,7 @@
-package snack.repositories;
+package snack.domain.repositories;
 
 import org.springframework.stereotype.Repository;
+import snack.domain.repositories.IngredientRepository;
 import snack.domain.Meal;
 
 import java.util.HashSet;

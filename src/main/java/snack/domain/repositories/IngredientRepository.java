@@ -1,4 +1,4 @@
-package snack.repositories;
+package snack.domain.repositories;
 
 import org.springframework.stereotype.Repository;
 import snack.domain.Ingredient;

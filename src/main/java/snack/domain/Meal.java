@@ -21,6 +21,8 @@ public class Meal {
 
     private Set<Discount> discounts;
 
+    private Number price;
+
     public Meal() {
     }
 
@@ -73,5 +75,28 @@ public class Meal {
 
     public void setDiscounts(Set<Discount> discounts) {
         this.discounts = discounts;
+    }
+
+    public Number getPrice() {
+        return price;
+    }
+
+    public void setPrice(Number price) {
+        this.price = price;
+    }
+
+    /*
+     * If ingredient value null - assumes zero value.
+     */
+
+    public Number addIngredient(Ingredient ingredient) {
+        this.price = this.price.doubleValue() + (ingredient.getValue() != null ? ingredient.getValue().doubleValue() : 0);
+        return this.price;
+    }
+
+    public Number subIngredient(Ingredient ingredient) {
+        this.price = this.price.doubleValue() - (ingredient.getValue() != null ? ingredient.getValue().doubleValue() : 0);
+        return this.price;
+
     }
 }

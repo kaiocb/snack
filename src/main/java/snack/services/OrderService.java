@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import snack.domain.Ingredient;
 import snack.domain.Meal;
-import snack.repositories.DiscountRepository;
-import snack.repositories.IngredientRepository;
-import snack.repositories.MealRepository;
+import snack.domain.repositories.DiscountRepository;
+import snack.domain.repositories.IngredientRepository;
 
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.BadRequestException;
@@ -31,7 +30,6 @@ public class OrderService {
     @Autowired
     private DiscountRepository discountRepository;
 
-
     @POST
     @Path("/check")
     public Meal check(@NotNull Set<Ingredient> ingredients) {
@@ -40,11 +38,19 @@ public class OrderService {
             throw new BadRequestException();
 
         Meal meal = new Meal(ingredients);
-        discountRepository.applyDiscounts(meal);
+        discountRepository.applyDiscounts(this.calculate(meal));
 
-        System.out.println();
-
-        return null;
+        return meal;
     }
 
+    private Meal calculate(Meal meal) {
+
+        meal.setPrice(0);
+
+        for (Ingredient ingredient : meal.getIngredients()) {
+            meal.addIngredient(ingredient);
+        }
+
+        return meal;
+    }
 }

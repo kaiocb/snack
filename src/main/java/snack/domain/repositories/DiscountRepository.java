@@ -1,5 +1,6 @@
-package snack.repositories;
+package snack.domain.repositories;
 
+import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Repository;
 import snack.domain.Discount;
 import snack.domain.Ingredient;
@@ -34,22 +35,28 @@ public class DiscountRepository {
             ingredientCounter[ingredient.getId().intValue()]++;
 
         /*
-         * Light discount rule
-         */
-        if (ingredientCounter[ingredientRepository.idOf("Alface")] > 0 && ingredientCounter[ingredientRepository.idOf("Bacon")] == 0)
-            meal.getDiscounts().add(new Discount(1L, "Light"));
-
-        /*
          * Muita carne rule
          */
-        for (int i = 0; i < ingredientCounter[ingredientRepository.idOf("Hambúrguer de carne")] / 3; i++)
+        for (int i = 0; i < ingredientCounter[ingredientRepository.idOf("Hambúrguer de carne")] / 3; i++) {
             meal.getDiscounts().add(new Discount(2L, "Muita carne"));
+            meal.subIngredient(ingredientRepository.get("Hambúrguer de carne"));
+        }
 
         /*
          * Muito queijo rule
          */
-        for (int i = 0; i < ingredientCounter[ingredientRepository.idOf("Queijo")] / 3; i++)
+        for (int i = 0; i < ingredientCounter[ingredientRepository.idOf("Queijo")] / 3; i++) {
             meal.getDiscounts().add(new Discount(3L, "Muito queijo"));
+            meal.subIngredient(ingredientRepository.get("Queijo"));
+        }
+
+         /*
+         * Light discount rule - final discount because giver 10 percent discount on entire price
+         */
+        if (ingredientCounter[ingredientRepository.idOf("Alface")] > 0 && ingredientCounter[ingredientRepository.idOf("Bacon")] == 0) {
+            meal.getDiscounts().add(new Discount(1L, "Light"));
+            meal.setPrice(Precision.round(meal.getPrice().doubleValue() * 0.9, 2));
+        }
 
         return meal.getDiscounts();
     }

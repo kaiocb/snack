@@ -44,6 +44,8 @@ retornando o preço final e o conjunto de descontos caso tenham sido aplicados.
 
 * `git clone https://github.com/kaiocb/snack-server.git`
 
+* goto: `cd snack-server`
+
 * test: `mvn test`
 
 * run: `mvn spring-boot:run`

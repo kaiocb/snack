@@ -1,0 +1,6 @@
+snack
+snack.configurations
+snack.domain
+snack.domain.repositories
+snack.services
+snack.test

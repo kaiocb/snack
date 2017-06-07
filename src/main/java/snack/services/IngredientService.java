@@ -2,8 +2,8 @@ package snack.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import snack.domain.repositories.IngredientRepository;
 import snack.domain.Ingredient;
+import snack.domain.repositories.IngredientRepository;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

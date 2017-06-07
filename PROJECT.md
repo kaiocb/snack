@@ -44,11 +44,6 @@ Os valores dos ingredientes são alterados com frequência e não gastaríamos q
 CRITÉRIOS DE COMPLETUDE
 
 O projeto deve ser entregue atendendo aos seguintes critérios
-O server-side deve ser desenvolvido em Java, utilizando Maven para gerenciar as dependências.
-O client-side deve ser desenvolvido em HTML, CSS e JavaScript (apenas com jQuery, ou com algum framework se desejar)
-Deve possuir cobertura de testes automatizados para os seguintes pontos: Valor dos lanches de cardápio, regra para cálculo de preço e promoções.
-Não é necessário se preocupar com a autenticação dos usuários.
-Não é necessário persistir os dados em um banco, pode fazer armazenamento em memória.
 ENTREGÁVEIS
 
 Você deve entregar um conjunto de artefatos, de acordo com o nível de complexidade que achar melhor. A seguir, os níveis de complexidade e seus respectivos entregáveis:

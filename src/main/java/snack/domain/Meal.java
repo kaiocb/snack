@@ -17,7 +17,7 @@ public class Meal {
 
     private String name;
 
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>();
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     private Set<Discount> discounts;
 

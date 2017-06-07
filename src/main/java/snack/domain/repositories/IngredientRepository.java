@@ -39,16 +39,27 @@ public class IngredientRepository {
         return selection;
     }
 
-    public int idOf(String name) throws NullPointerException {
+    public int idOf(String name) {
         return this.get(name).getId().intValue();
     }
 
+    public Number valueOf(String name) {
+        return this.get(name).getValue();
+
+    }
+
+
     public Ingredient get(String name) {
+        return this.get(name, false);
+    }
+
+    public Ingredient get(String name, boolean clone) {
 
         if (name != null && !name.equals("")) {
 
             for (Ingredient ingredient : this.ingredients) {
-                if (ingredient.getName().toLowerCase().equals(name.toLowerCase())) return ingredient;
+                if (ingredient.getName().toLowerCase().equals(name.toLowerCase()))
+                    return clone ? new Ingredient(ingredient.getId(), ingredient.getName(), ingredient.getValue()) : ingredient;
             }
         }
 

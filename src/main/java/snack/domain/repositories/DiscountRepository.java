@@ -18,8 +18,16 @@ public class DiscountRepository {
 
     private IngredientRepository ingredientRepository;
 
+    private Set<Discount> discounts;
+
     public DiscountRepository() {
+
         ingredientRepository = new IngredientRepository();
+
+        this.discounts = new HashSet<>(3);
+        this.discounts.add(new Discount(1L, "Light"));
+        this.discounts.add(new Discount(2L, "Muita carne"));
+        this.discounts.add(new Discount(3L, "Muito queijo"));
     }
 
     public Set<Discount> applyDiscounts(Meal meal) {
@@ -38,7 +46,7 @@ public class DiscountRepository {
          * Muita carne rule
          */
         for (int i = 0; i < ingredientCounter[ingredientRepository.idOf("Hambúrguer de carne")] / 3; i++) {
-            meal.getDiscounts().add(new Discount(2L, "Muita carne"));
+            meal.getDiscounts().add(this.get("Muita carne"));
             meal.subIngredient(ingredientRepository.get("Hambúrguer de carne"));
         }
 
@@ -46,7 +54,7 @@ public class DiscountRepository {
          * Muito queijo rule
          */
         for (int i = 0; i < ingredientCounter[ingredientRepository.idOf("Queijo")] / 3; i++) {
-            meal.getDiscounts().add(new Discount(3L, "Muito queijo"));
+            meal.getDiscounts().add(this.get("Muito queijo"));
             meal.subIngredient(ingredientRepository.get("Queijo"));
         }
 
@@ -54,11 +62,23 @@ public class DiscountRepository {
          * Light discount rule - final discount because giver 10 percent discount on entire price
          */
         if (ingredientCounter[ingredientRepository.idOf("Alface")] > 0 && ingredientCounter[ingredientRepository.idOf("Bacon")] == 0) {
-            meal.getDiscounts().add(new Discount(1L, "Light"));
+            meal.getDiscounts().add(this.get("Light"));
             meal.setPrice(Precision.round(meal.getPrice().doubleValue() * 0.9, 2));
         }
 
         return meal.getDiscounts();
+    }
+
+    public Discount get(String name) {
+
+        if (name != null && !name.equals("")) {
+
+            for (Discount discount : this.discounts) {
+                if (discount.getName().toLowerCase().equals(name.toLowerCase())) return discount;
+            }
+        }
+
+        return null;
     }
 
 }

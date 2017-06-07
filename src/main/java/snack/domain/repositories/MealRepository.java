@@ -1,7 +1,6 @@
 package snack.domain.repositories;
 
 import org.springframework.stereotype.Repository;
-import snack.domain.repositories.IngredientRepository;
 import snack.domain.Meal;
 
 import java.util.HashSet;
@@ -28,6 +27,18 @@ public class MealRepository {
         this.meals.add(new Meal(3L, "X-Egg").add(ingredients.get("Ovo", "Hambúrguer de carne", "Queijo")));
         this.meals.add(new Meal(4L, "X-Egg Bacon").add(ingredients.get("Ovo", "Bacon", "Hambúrguer de carne", "Queijo")));
 
+    }
+
+    public Meal get(String name) {
+
+        if (name != null && !name.equals("")) {
+
+            for (Meal meal : this.meals) {
+                if (meal.getName().toLowerCase().equals(name.toLowerCase())) return meal;
+            }
+        }
+
+        return null;
     }
 
     public Set<Meal> all() {

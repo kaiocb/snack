@@ -20,6 +20,7 @@ public class Jersey extends ResourceConfig {
         packages(true, "snack.services");
 
         register(RolesAllowedDynamicFeature.class);
+        register(CORSFilter.class);
 
         EncodingFilter.enableFor(this, GZipEncoder.class);
     }

@@ -10,6 +10,8 @@ package snack.domain;
 
 public class Ingredient {
 
+    private Long id;
+
     /**
      * Name of ingredient
      */
@@ -23,9 +25,18 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(String name, Number value) {
+    public Ingredient(Long id, String name, Number value) {
+        this.id = id;
         this.name = name;
         this.value = value;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -17,11 +17,11 @@ public class IngredientRepository {
 
     public IngredientRepository() {
         this.ingredients = new HashSet<Ingredient>(5);
-        this.ingredients.add(new Ingredient("Alface", 0.40));
-        this.ingredients.add(new Ingredient("Bacon", 2.00));
-        this.ingredients.add(new Ingredient("Hambúrguer de carne", 3.00));
-        this.ingredients.add(new Ingredient("Ovo", 0.80));
-        this.ingredients.add(new Ingredient("Queijo", 1.50));
+        this.ingredients.add(new Ingredient(1L, "Alface", 0.40));
+        this.ingredients.add(new Ingredient(2L, "Bacon", 2.00));
+        this.ingredients.add(new Ingredient(3L, "Hambúrguer de carne", 3.00));
+        this.ingredients.add(new Ingredient(4L, "Ovo", 0.80));
+        this.ingredients.add(new Ingredient(5L, "Queijo", 1.50));
     }
 
     public Ingredient get(int index) {
@@ -39,6 +39,10 @@ public class IngredientRepository {
         return selection;
     }
 
+    public int idOf(String name) throws NullPointerException {
+        return this.get(name).getId().intValue();
+    }
+
     public Ingredient get(String name) {
 
         if (name != null && !name.equals("")) {
@@ -53,5 +57,21 @@ public class IngredientRepository {
 
     public Set<Ingredient> all() {
         return this.ingredients;
+    }
+
+    /**
+     * Check of ingredient integrity (must have @notNull id
+     *
+     * @param ingredients
+     * @return
+     */
+    public boolean integrity(Set<Ingredient> ingredients) {
+
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getId() == null)
+                return false;
+        }
+
+        return true;
     }
 }

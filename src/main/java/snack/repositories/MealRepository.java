@@ -22,10 +22,10 @@ public class MealRepository {
         ingredients = new IngredientRepository();
 
         this.meals = new HashSet<Meal>(4);
-        this.meals.add(new Meal("X-Bacon").add(ingredients.get("Bacon", "Hambúrguer de carne", "Queijo")));
-        this.meals.add(new Meal("X-Burger").add(ingredients.get("Hambúrguer de carne", "Queijo")));
-        this.meals.add(new Meal("X-Egg").add(ingredients.get("Ovo", "Hambúrguer de carne", "Queijo")));
-        this.meals.add(new Meal("X-Egg Bacon").add(ingredients.get("Ovo", "Bacon", "Hambúrguer de carne", "Queijo")));
+        this.meals.add(new Meal(1L, "X-Bacon").add(ingredients.get("Bacon", "Hambúrguer de carne", "Queijo")));
+        this.meals.add(new Meal(2L, "X-Burger").add(ingredients.get("Hambúrguer de carne", "Queijo")));
+        this.meals.add(new Meal(3L, "X-Egg").add(ingredients.get("Ovo", "Hambúrguer de carne", "Queijo")));
+        this.meals.add(new Meal(4L, "X-Egg Bacon").add(ingredients.get("Ovo", "Bacon", "Hambúrguer de carne", "Queijo")));
 
     }
 
